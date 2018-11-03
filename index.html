@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="two.js"></script>
+
+    <title>Polygon</title>
+  </head>
+  <body>
+
+    <br /><br /><br /><br />
+    <form id="changeDim">
+
+      <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+
+          <div class="row">
+            <div class="col-md-4">
+              <p>Depth of Trench</p>
+              <input type="number" id="depth" class="form-control" max="25" min="0" required />
+            </div>
+            <div class="col-md-4">
+              <p>Width of trench, at the bottom</p>
+              <input type="text" id="width" class="form-control" max="15" min="0" required />
+            </div>
+            <div class="col-md-4">
+              <p>Length of trench</p>
+              <input type="text" id="length" class="form-control" />
+            </div>
+          </div>
+
+          <br /><br />
+
+          <div>
+            <button type="submit">Change dimensions</button>
+          </div>
+
+          <br /><br />
+
+          <div class="container text-center">
+            <svg height="500" width="500">
+                <polygon id="polygonStuff" points="100,0 500,0 400,250 200,250" style="fill:orange; stroke:red; stroke-width:1" />
+                Sorry, your browser does not support inline SVG.
+              </svg>
+          </div>
+
+          <br /><br />
+        
+
+        </div>
+
+        <div class="col-md-2"></div>
+      </div>
+    
+    </form>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+          $("#changeDim").submit(function(e){
+              e.preventDefault();
+
+              let depth = $("#depth").val();
+              let scaledDepth = depth * 12;
+
+              let width = $("#width").val();
+              let length = $("#length").val();
+
+              $("#polygonStuff").attr("points", "100,0 500,0 350," + scaledDepth + " 250," + scaledDepth);
+          });
+      });
+
+
+      /* function points() {
+        document.getElementById("polygonStuff").setAttribute("points", "100,0 50,0 100,100");
+      } */
+    
+    </script>
+  </body>
+</html>

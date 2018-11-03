@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="two.js"></script>
 
     <title>Polygon</title>
   </head>
@@ -22,11 +21,11 @@
           <div class="row">
             <div class="col-md-4">
               <p>Depth of Trench</p>
-              <input type="number" id="depth" class="form-control" max="25" min="0" required />
+              <input type="number" id="depth" class="form-control" min="0" required />
             </div>
             <div class="col-md-4">
               <p>Width of trench, at the bottom</p>
-              <input type="text" id="width" class="form-control" max="15" min="0" required />
+              <input type="number" id="width" class="form-control" min="0" required />
             </div>
             <div class="col-md-4">
               <p>Length of trench</p>
@@ -37,13 +36,13 @@
           <br /><br />
 
           <div>
-            <button type="submit">Change dimensions</button>
+            <button type="submit">Change dimensions &rarr;</button>
           </div>
 
           <br /><br />
 
-          <div class="container text-center">
-            <svg height="500" width="500">
+          <div class="container">
+            <svg height="1000" width="1000">
                 <polygon id="polygonStuff" points="100,0 500,0 400,250 200,250" style="fill:orange; stroke:red; stroke-width:1" />
                 Sorry, your browser does not support inline SVG.
               </svg>
@@ -73,12 +72,25 @@
               e.preventDefault();
 
               let depth = $("#depth").val();
-              let scaledDepth = depth * 12;
+              // let scaledDepth = depth * 12;
 
-              let width = $("#width").val();
+              let widthTrench = $("#width").val();
+
+              let widthAtTop = widthTrench + (0.75 * depth);
+              let yB = 100 + widthAtTop;
+              let roundedYB = Math.round(yB);
+
+              let sideWidth = ((widthAtTop - 4) - widthTrench) / 2;
+              let roundedSideWidth = Math.round(sideWidth);
+              console.log(roundedSideWidth);
+
+              let xC = 100 + sideWidth;
+
+              let xD = xC + widthTrench;
+              
               let length = $("#length").val();
 
-              $("#polygonStuff").attr("points", "100,0 500,0 350," + scaledDepth + " 250," + scaledDepth);
+              $("#polygonStuff").attr("points", "100,0 " + roundedYB + ",0 " + xC + "," + depth + " " + xD + "," + depth);
           });
       });
 

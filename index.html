@@ -42,10 +42,13 @@
           <br /><br />
 
           <div class="container">
-            <svg height="1000" width="1000">
+            <div id="slope-image">
+              <img src="" alt="Trench diagram here" id="trench-img">
+            </div>
+            <!-- <svg height="1000" width="1000">
                 <polygon id="polygonStuff" points="100,0 500,0 400,250 200,250" style="fill:orange; stroke:red; stroke-width:1" />
                 Sorry, your browser does not support inline SVG.
-              </svg>
+              </svg> -->
           </div>
 
           <br /><br />
@@ -74,23 +77,29 @@
               let depth = $("#depth").val();
               // let scaledDepth = depth * 12;
 
-              let widthTrench = $("#width").val();
-
-              let widthAtTop = widthTrench + (0.75 * depth);
-              let yB = 100 + widthAtTop;
-              let roundedYB = Math.round(yB);
-
-              let sideWidth = ((widthAtTop - 4) - widthTrench) / 2;
-              let roundedSideWidth = Math.round(sideWidth);
-              console.log(roundedSideWidth);
-
-              let xC = 100 + sideWidth;
-
-              let xD = xC + widthTrench;
-              
+              let width = $("#width").val();
               let length = $("#length").val();
+              let typeofsoil = 'a';
 
-              $("#polygonStuff").attr("points", "100,0 " + roundedYB + ",0 " + xC + "," + depth + " " + xD + "," + depth);
+              //console.log('dimensions: ', depth, width, length);
+
+              document.getElementById("trench-img").src = `https://www.undergroundsafety.com/Resource/SlopeCalculator/fetchImage.php?obtuse=true&typeofsoil=${typeofsoil}&depth=${depth}&width=${width}&length=${length}&cache=${Math.random() * 1111}`;
+
+              // let widthAtTop = widthTrench + (0.75 * depth);
+              // let yB = 100 + widthAtTop;
+              // let roundedYB = Math.round(yB);
+
+              // let sideWidth = ((widthAtTop - 4) - widthTrench) / 2;
+              // let roundedSideWidth = Math.round(sideWidth);
+              // console.log(roundedSideWidth);
+
+              // let xC = 100 + sideWidth;
+
+              // let xD = xC + widthTrench;
+              
+              // let length = $("#length").val();
+
+              // $("#polygonStuff").attr("points", "100,0 " + roundedYB + ",0 " + xC + "," + depth + " " + xD + "," + depth);
           });
       });
 
